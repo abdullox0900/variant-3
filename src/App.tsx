@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
   MdArrowForward,
   MdMessage,
@@ -14,7 +15,32 @@ import Img6 from './assets/img-6.jpg'
 import Img7 from './assets/img-7.png'
 
 import logo from './assets/logo.png'
+
+// Define Telegram WebApp types
+declare global {
+  interface Window {
+    Telegram?: {
+      WebApp?: {
+        initDataUnsafe?: {
+          user?: {
+            first_name?: string
+          }
+        }
+      }
+    }
+  }
+}
+
 function App() {
+  const [userName, setUserName] = useState<string>("name")
+
+  useEffect(() => {
+    // Get user name from Telegram WebApp if available
+    if (window.Telegram?.WebApp?.initDataUnsafe?.user?.first_name) {
+      setUserName(window.Telegram.WebApp.initDataUnsafe.user.first_name)
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-[#EFEFEF]">
       {/* Header */}
@@ -28,7 +54,9 @@ function App() {
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3 bg-[#EFEFEF] px-3 py-1.5 rounded-md">
-                <span className="text-[#121212] text-sm">Александр</span>
+                <span className="text-[#121212] text-sm">
+                  {userName}
+                </span>
                 <div className="w-7 h-7 bg-[#D0313D] rounded-md flex items-center justify-center">
                   <MdPerson className="w-4 h-4 text-white" />
                 </div>
