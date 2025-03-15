@@ -79,7 +79,7 @@ function App() {
                 </div>
                 <h2 className="text-lg font-medium text-[#121212]">Видео</h2>
               </div>
-              <a href="#" className="text-[#D0313D] text-xs flex items-center gap-1 hover:underline">
+              <a href="https://t.me/safeenvirru/19" className="text-[#D0313D] text-xs flex items-center gap-1 hover:underline">
                 Все видео
                 <MdArrowForward className="w-3 h-3" />
               </a>
